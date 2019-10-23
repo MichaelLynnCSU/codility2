@@ -178,6 +178,11 @@
   <target name="test" description="run all junit tests">
 
     <junit printsummary="on" haltonfailure="yes" fork="true">
+
+      <!-- Make sure these two libraries are included -->
+      <classpath location="lib/junit-4.11.jar" />
+      <classpath location="lib/hamcrest-core-1.3.jar" />
+
       <classpath>
         <path refid="classpath.test"/>
         <path refid="classpath.compile"/>
