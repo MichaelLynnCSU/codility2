@@ -161,4 +161,11 @@
   <target name="all" depends="build.modules" description="build all"/>
 
 
+  <target name="dist" depends="all" description="generate the distribution">
+    <buildnumber />
+    <!-- Put everything in ${build} into the MyApplication-${version}.${build.number}.jar -->
+    <!--- java -cp  MyApp.jar OddOccurrencesInArray -->
+    <jar destfile="${dist}/lib/MyApp.jar" basedir="out/production/codility2" />
+  </target>
+
 </project>
