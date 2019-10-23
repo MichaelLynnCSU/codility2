@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_codility2" default="compile.module.codility2">
+  <dirname property="module.codility2.basedir" file="${ant.file.module_codility2}"/>
+  
+  <property name="module.jdk.home.codility2" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.codility2" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.codility2" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.codility2" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="codility2.output.dir" value="${module.codility2.basedir}/out/production/codility2"/>
+  <property name="codility2.testoutput.dir" value="${module.codility2.basedir}/out/test/codility2"/>
+  
+  <path id="codility2.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="codility2.module.production.classpath">
+    <path refid="${module.jdk.classpath.codility2}"/>
+  </path>
+  
+  <path id="codility2.runtime.production.module.classpath">
+    <pathelement location="${codility2.output.dir}"/>
+  </path>
+  
+  <path id="codility2.module.classpath">
+    <path refid="${module.jdk.classpath.codility2}"/>
+    <pathelement location="${codility2.output.dir}"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.4.2/junit-jupiter-api-5.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-engine/5.4.2/junit-jupiter-engine-5.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-params/5.4.2/junit-jupiter-params-5.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter/5.4.2/junit-jupiter-5.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.4.2/junit-platform-commons-1.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-engine/1.4.2/junit-platform-engine-1.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar"/>
+  </path>
+  
+  <path id="codility2.runtime.module.classpath">
+    <pathelement location="${codility2.testoutput.dir}"/>
+    <pathelement location="${codility2.output.dir}"/>
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.4.2/junit-jupiter-api-5.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-engine/5.4.2/junit-jupiter-engine-5.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-params/5.4.2/junit-jupiter-params-5.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter/5.4.2/junit-jupiter-5.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.4.2/junit-platform-commons-1.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-engine/1.4.2/junit-platform-engine-1.4.2.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.codility2">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.codility2">
+    <patternset refid="excluded.from.module.codility2"/>
+  </patternset>
+  
+  <path id="codility2.module.sourcepath">
+    <dirset dir="${module.codility2.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="codility2.module.test.sourcepath">
+    <dirset dir="${module.codility2.basedir}">
+      <include name="tests"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.codility2" depends="compile.module.codility2.production,compile.module.codility2.tests" description="Compile module codility2"/>
+  
+  <target name="compile.module.codility2.production" depends="register.custom.compilers" description="Compile module codility2; production classes">
+    <mkdir dir="${codility2.output.dir}"/>
+    <javac2 destdir="${codility2.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.codility2}/javac">
+      <compilerarg line="${compiler.args.codility2}"/>
+      <bootclasspath refid="codility2.module.bootclasspath"/>
+      <classpath refid="codility2.module.production.classpath"/>
+      <src refid="codility2.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.codility2"/>
+    </javac2>
+    
+    <copy todir="${codility2.output.dir}">
+      <fileset dir="${module.codility2.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.codility2.tests" depends="register.custom.compilers,compile.module.codility2.production" description="compile module codility2; test classes" unless="skip.tests">
+    <mkdir dir="${codility2.testoutput.dir}"/>
+    <javac2 destdir="${codility2.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.codility2}/javac">
+      <compilerarg line="${compiler.args.codility2}"/>
+      <bootclasspath refid="codility2.module.bootclasspath"/>
+      <classpath refid="codility2.module.classpath"/>
+      <src refid="codility2.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.codility2"/>
+    </javac2>
+    
+    <copy todir="${codility2.testoutput.dir}">
+      <fileset dir="${module.codility2.basedir}/tests">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.codility2" description="cleanup module">
+    <delete dir="${codility2.output.dir}"/>
+    <delete dir="${codility2.testoutput.dir}"/>
+  </target>
+</project>
