@@ -163,21 +163,17 @@
 
   <target name="test" description="run all junit tests">
 
-    <junit printsummary="yes" haltonfailure="${haltonfailure}">
-      <classpath refid="test.class.path"/>
-      <formatter type="xml"/>
-      <batchtest fork="yes" todir="${junit.out}">
-        <fileset dir="${test.src}">
-          <include name="**/*Test.java"/>
-        </fileset>
+    <junit printsummary="on" haltonfailure="yes" fork="true">
+      <classpath>
+        <path refid="classpath.test"/>
+        <path refid="classpath.compile"/>
+        <pathelement location="${test.build.dir}"/>
+      </classpath>
+      <formatter type="brief" usefile="false" />
+      <batchtest>
+        <fileset dir="${test.dir}" includes="**/*Test.java" />
       </batchtest>
     </junit>
-    <junitreport todir="${junit.out}">
-      <fileset dir="${junit.out}">
-        <include name="TEST-*.xml"/>
-      </fileset>
-      <report todir="${junit.out}" format="frames"/>
-    </junitreport>
 
   </target>
 
