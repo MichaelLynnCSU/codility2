@@ -143,7 +143,9 @@
     <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
     <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
   </target>
-  
+
+
+
   <!-- Modules -->
   
   <import file="${basedir}/module_codility2.xml"/>
@@ -157,4 +159,6 @@
   <target name="build.modules" depends="init, clean, compile.module.codility2" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
+
+
 </project>
