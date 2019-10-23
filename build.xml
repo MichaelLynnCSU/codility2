@@ -161,4 +161,27 @@
   <target name="all" depends="build.modules" description="build all"/>
 
 
+  <target name="test" description="run all junit tests">
+
+    <junit printsummary="yes" haltonfailure="${haltonfailure}">
+      <classpath refid="test.class.path"/>
+      <formatter type="xml"/>
+      <batchtest fork="yes" todir="${junit.out}">
+        <fileset dir="${test.src}">
+          <include name="**/*Test.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+    <junitreport todir="${junit.out}">
+      <fileset dir="${junit.out}">
+        <include name="TEST-*.xml"/>
+      </fileset>
+      <report todir="${junit.out}" format="frames"/>
+    </junitreport>
+
+  </target>
+
+
+
+
 </project>
